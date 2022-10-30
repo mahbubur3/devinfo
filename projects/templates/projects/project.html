@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<img style="max-width: 500px;" src="{{ project.thumbnail.url }}" alt="">
+
 <h1>{{ project.title }}</h1>
 <h3>{{ project.description }}</h3>
 <hr>
