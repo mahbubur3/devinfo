@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if page == 'signup' %}
+<h2>register or signup user</h2>
+<form action="{% url 'signup' %}" method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">SignUp</button>
+</form>
+<p>Already have an account? <a href="{% url 'signin' %}">SignIn</a></p>
+{% else %}
+<form action="{% url 'signin' %}" method="POST">
+    <input type="text" name="username" id="">
+    <input type="password" name="password" id="">
+    <button type="submit">SignIn</button>
+    {% csrf_token %}
+    <p>Don't have an account? <a href="{% url 'signup' %}">SignUp</a></p>
+</form>
+{% endif %}
+
+{% endblock content %}

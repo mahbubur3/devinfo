@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from .models import Project
 from .forms import ProjectForm
@@ -21,6 +22,7 @@ def project(request, pk):
 
 
 # create a project
+@login_required(login_url='signin')
 def create_project(request):
     form = ProjectForm()
 
@@ -35,6 +37,7 @@ def create_project(request):
 
 
 # edit project
+@login_required(login_url='signin')
 def edit_project(request, pk):
     project = Project.objects.get(id=pk)
     form = ProjectForm(instance=project)
@@ -50,6 +53,7 @@ def edit_project(request, pk):
 
 
 # delete a project
+@login_required(login_url='signin')
 def delete_project(request, pk):
     project = Project.objects.get(id=pk)
 
