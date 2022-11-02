@@ -1,22 +1,69 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 {% if page == 'signup' %}
-<h2>register or signup user</h2>
-<form action="{% url 'signup' %}" method="POST">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <button type="submit">SignUp</button>
-</form>
-<p>Already have an account? <a href="{% url 'signin' %}">SignIn</a></p>
+<div class="auth">
+    <div class="card">
+      <div class="auth__header text-center">
+        <a href="/">
+          <img src="{% static 'images/icon.svg' %}" alt="icon">
+        </a>
+        <h3>Sign Up</h3>
+        <p>Create a new developer account</p>
+      </div>
+
+      <form action="{% url 'signup' %}" method="POST" class="form auth__form">
+        {% for field in form %}
+        <div class="form__field">
+            <label for="formInput#text">{{ field.label }} </label>
+            {{ field }}
+          </div>
+        {% endfor %}
+        <div class="auth__actions">
+          <input class="btn btn--sub btn--lg" type="submit" value="SignUp">
+        </div>
+        {% csrf_token %}
+      </form>
+      <div class="auth__alternative">
+        <p>Already have an Account?</p>
+        <a href="{% url 'signin' %}">Sign In</a>
+      </div>
+    </div>
+  </div>
 {% else %}
-<form action="{% url 'signin' %}" method="POST">
-    <input type="text" name="username" id="">
-    <input type="password" name="password" id="">
-    <button type="submit">SignIn</button>
-    {% csrf_token %}
-    <p>Don't have an account? <a href="{% url 'signup' %}">SignUp</a></p>
-</form>
+
+<div class="auth">
+    <div class="card">
+      <div class="auth__header text-center">
+        <a href="/">
+          <img src="{% static 'images/icon.svg' %}" alt="icon"/>
+        </a>
+        <h3>Sign In</h3>
+        <p>Hello Developer, Welcome Back!</p>
+      </div>
+
+      <form action="{% url 'signin' %}" method="POST" class="form auth__form">
+        <div class="form__field">
+          <label for="formInput#text">Username: </label>
+          <input class="input input--text" id="formInput#text" type="text" name="username" placeholder="Enter your username...">
+        </div>
+        <div class="form__field">
+          <label for="formInput#password">Password: </label>
+          <input class="input input--password" id="formInput#passowrd" type="password" name="password" placeholder="••••••••">
+        </div>
+        <div class="auth__actions">
+          <input class="btn btn--sub btn--lg" type="submit" value="Sign In">
+          <a href="forgetpassword.html">Forget Password?</a>
+        </div>
+        {% csrf_token %}
+      </form>
+      <div class="auth__alternative">
+        <p>Don’t have an Account?</p>
+        <a href="{% url 'signup' %}">Sign Up</a>
+      </div>
+    </div>
+  </div>
 {% endif %}
 
 {% endblock content %}

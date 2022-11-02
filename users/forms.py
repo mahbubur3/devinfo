@@ -10,3 +10,13 @@ class CustomUserCreationForm(UserCreationForm):
         labels = {
             'first_name': 'Name'
         }
+
+    # implement style in input form 
+    def __init__(self, *args, **kwargs):
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+
+        self.fields['first_name'].widget.attrs.update({'class': 'input'})
+        self.fields['email'].widget.attrs.update({'class': 'input'})
+        self.fields['username'].widget.attrs.update({'class': 'input'})
+        self.fields['password1'].widget.attrs.update({'class': 'input'})
+        self.fields['password2'].widget.attrs.update({'class': 'input'})
