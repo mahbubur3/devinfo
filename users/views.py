@@ -39,7 +39,7 @@ def signin(request):
 # user logout
 def signout(request):
     logout(request)
-    messages.error(request, 'User was successfully logged out')
+    messages.info(request, 'User was successfully logged out')
     return redirect('signin')
 
 
