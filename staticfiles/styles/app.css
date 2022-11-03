@@ -649,14 +649,14 @@ img {
   width: 100%;
   z-index: 1;
   position: relative;
-  background: transparent;
+  background-image: transparent;
   height: 99vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.auth::after {
+/* .auth::after {
   z-index: -1;
   opacity: 0.1;
   content: '';
@@ -667,7 +667,7 @@ img {
   bottom: 0;
   right: 0;
   background: url(../images/pattern.jpg);
-}
+} */
 
 .auth>.card {
   padding: 3rem 4rem;
@@ -852,18 +852,4 @@ img {
   color: var(--color-sub);
   margin-bottom: 1rem;
   margin-top: 2rem;
-}
-
-
-
-/*=======================
-  Fixed Position Alerts Wrapper
-========================*/
-
-.alert {
-  position: fixed;
-  left: 50%;
-  top: 120px;
-  transform: translate(-50%, -50%);
-  z-index: 99999;
 }
