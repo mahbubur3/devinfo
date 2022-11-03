@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ProfileForm
 from .models import Profile
 
 
@@ -85,3 +85,31 @@ def profile(request, pk):
 
     context = {'profile': profile, 'top_skills': top_skills, 'other_skills': other_skills}
     return render(request, 'users/profile.html', context)
+
+
+# user account 
+@login_required(login_url='signin')
+def user_account(request):
+    profile = request.user.profile
+
+    skills = profile.skill_set.all()
+    projects = profile.project_set.all()
+
+    context = {'profile': profile, 'skills': skills, 'projects': projects}
+    return render(request, 'users/user-account.html', context)
+
+
+# edit user account 
+@login_required(login_url='signin')
+def edit_account(request):
+    profile = request.user.profile
+    form = ProfileForm(instance=profile)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('account')
+
+    context = {'form': form}
+    return render(request, 'users/profile-form.html', context)
