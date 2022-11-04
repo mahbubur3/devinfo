@@ -58,7 +58,7 @@ def signup(request):
 
             # when registration is done then automatically login and redirect to profiles 
             login(request, user)
-            return redirect('profiles')
+            return redirect('account')
         
         else:
             messages.error(request, 'An error has occurred during signup')
