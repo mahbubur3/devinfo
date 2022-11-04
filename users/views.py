@@ -150,3 +150,16 @@ def edit_skill(request, pk):
 
     context = {'form': form}
     return render(request, 'users/skill-form.html', context)
+
+
+def delete_skill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+
+    if request.method == 'POST':
+        skill.delete()
+        messages.success(request, 'Skill was deleted successfully')
+        return redirect('account')
+
+    context = {'object': skill}
+    return render(request, 'delete-template.html', context)
