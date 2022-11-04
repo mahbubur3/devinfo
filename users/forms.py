@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Profile
+from .models import Profile, Skill
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -28,3 +28,35 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['name', 'email', 'username', 'location', 'intro', 'bio', 'profile_picture', 'github', 'twitter', 'linkedin', 'youtube', 'facebook', 'website']
+
+    # implement style in input form 
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs.update({'class': 'input'})
+        self.fields['email'].widget.attrs.update({'class': 'input'})
+        self.fields['username'].widget.attrs.update({'class': 'input'})
+        self.fields['location'].widget.attrs.update({'class': 'input'})
+        self.fields['intro'].widget.attrs.update({'class': 'input'})
+        self.fields['bio'].widget.attrs.update({'class': 'input'})
+        self.fields['profile_picture'].widget.attrs.update({'class': 'input'})
+        self.fields['github'].widget.attrs.update({'class': 'input'})
+        self.fields['twitter'].widget.attrs.update({'class': 'input'})
+        self.fields['linkedin'].widget.attrs.update({'class': 'input'})
+        self.fields['youtube'].widget.attrs.update({'class': 'input'})
+        self.fields['facebook'].widget.attrs.update({'class': 'input'})
+        self.fields['website'].widget.attrs.update({'class': 'input'})
+
+
+class SkillForm(forms.ModelForm):
+    class Meta:
+        model = Skill
+        fields = '__all__'
+        exclude = ['owner']
+
+    # implement style in input form 
+    def __init__(self, *args, **kwargs):
+        super(SkillForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs.update({'class': 'input'})
+        self.fields['description'].widget.attrs.update({'class': 'input'})

@@ -11,4 +11,6 @@ urlpatterns = [
     path('profile/<str:pk>/', views.profile, name='profile'),
     path('account/', views.user_account, name='account'),
     path('edit-account/', views.edit_account, name='edit-account'),
+    path('add-skill/', views.add_skill, name='add-skill'),
+    path('edit-skill/<str:pk>/', views.edit_skill, name='edit-skill'),
 ]
