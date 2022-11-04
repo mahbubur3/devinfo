@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Q
 
-from .models import Project
+from .models import Project, Tag
 from .forms import ProjectForm
+from .utils import search_projects
 
 
 # show all projects in homepage
 def projects(request):
-    projects = Project.objects.all()
+    projects, search = search_projects(request)
 
-    context = {'projects': projects}
+    context = {'projects': projects, 'search': search}
     return render(request, 'projects/projects.html', context)
 
 
