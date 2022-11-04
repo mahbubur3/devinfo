@@ -3,9 +3,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Q
 
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
-from .models import Profile
+from .models import Profile, Skill
 
 
 # user login 
@@ -68,10 +69,18 @@ def signup(request):
 
 
 # show all profiles
-def profiles(request): 
-    profiles = Profile.objects.all()
+def profiles(request):
+    search = ''
 
-    context = {'profiles': profiles}
+    if request.GET.get('search'):
+        search = request.GET.get('search')
+
+    skills = Skill.objects.filter(name__icontains=search)
+
+    # search via name, intro and skill 
+    profiles = Profile.objects.distinct().filter(Q(name__icontains=search) | Q(intro__icontains=search) | Q(skill__in=skills))
+
+    context = {'profiles': profiles, 'search': search}
     return render(request, 'users/profiles.html', context)
 
 
