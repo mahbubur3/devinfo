@@ -10,7 +10,7 @@ from .utils import search_projects, paginate_projects
 # show all projects and search
 def projects(request):
     projects, search = search_projects(request)
-    custom_range, projects = paginate_projects(request, projects, 6)
+    custom_range, projects = paginate_projects(request, projects, 9)
 
     context = {'projects': projects, 'search': search, 'custom_range': custom_range}
     return render(request, 'projects/projects.html', context)
