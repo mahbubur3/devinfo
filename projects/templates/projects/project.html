@@ -36,41 +36,29 @@
               {{ project.vote_ratio }}% Postitive Feedback ({{ project.total_vote }} Vote{{ project.total_vote|pluralize:"s" }})
             </h5>
 
-            <form class="form" action="#" method="POST">
-              <!-- Textarea -->
+            <form action="{% url 'project' project.id %}" method="POST">
+              {% for field in form %}
               <div class="form__field">
-                <label for="formInput#textarea">Comments: </label>
-                <textarea class="input input--textarea" name="message" id="formInput#textarea"
-                  placeholder="Write your comments here..."></textarea>
+                <label for="formInput#textarea">{{ field.label }}</label>
+                {{ field }}
               </div>
-              <input class="btn btn--sub btn--lg" type="submit" value="Comments" />
+              {% endfor %}
+              <input class="btn btn--sub btn--lg" type="submit" value="Add Review" />
             </form>
             <div class="commentList">
+              {% for review in project.review_set.all %}
+              {% if review.body %}
               <div class="comment">
-                <a href="profile.html">
-                  <img class="avatar avatar--md"
-                    src="https://t3.ftcdn.net/jpg/03/67/46/48/360_F_367464887_f0w1JrL8PddfuH3P2jSPlIGjKU2BI0rn.jpg" alt="user" />
+                <a href="{% url 'profile' review.owner.id %}">
+                  <img class="avatar avatar--md" src="{{ review.owner.profile_picture.url }}" alt="user" />
                 </a>
                 <div class="comment__details">
-                  <a href="profile.html" class="comment__author">Maria Garcia</a>
-                  <p class="comment__info">
-                    Consectetur adipisicing elit. Reprehenderit alias numquam perferendis mollitia minus minima
-                    exercitationem possimus ab deserunt qui, ratione, dignissimos ut magni laborum quo.
-                  </p>
+                  <a href="{% url 'profile' review.owner.id %}" class="comment__author">{{ review.owner.name }}</a>
+                  <p class="comment__info">{{ review.body|linebreaksbr }}</p>
                 </div>
               </div>
-              <div class="comment">
-                <a href="profile.html">
-                  <img class="avatar avatar--md" src="https://imageio.forbes.com/specials-images/imageserve/61688aa1d4a8658c3f4d8640/Antonio-Juliano/0x0.jpg?format=jpg&width=960" alt="user" />
-                </a>
-                <div class="comment__details">
-                  <a href="profile.html" class="comment__author">James Johnson</a>
-                  <p class="comment__info">
-                    Consectetur adipisicing elit. Reprehenderit alias numquam perferendis mollitia minus minima
-                    exercitationem possimus ab deserunt qui, ratione, dignissimos ut magni laborum quo.
-                  </p>
-                </div>
-              </div>
+              {% endif %}
+              {% endfor %}
             </div>
           </div>
         </div>

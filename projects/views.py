@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .models import Project, Tag
-from .forms import ProjectForm
+from .forms import ProjectForm, ReviewForm
 from .utils import search_projects, paginate_projects
 
 
@@ -19,8 +19,9 @@ def projects(request):
 # view project
 def project(request, pk):
     project = Project.objects.get(id=pk)
+    form = ReviewForm()
 
-    context = {'project': project}
+    context = {'project': project, 'form': form}
     return render(request, 'projects/project.html', context)
 
 
