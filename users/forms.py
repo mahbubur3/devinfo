@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Profile, Skill
+from .models import Profile, Skill, Message
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -60,3 +60,18 @@ class SkillForm(forms.ModelForm):
 
         self.fields['name'].widget.attrs.update({'class': 'input'})
         self.fields['description'].widget.attrs.update({'class': 'input'})
+
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['name', 'email', 'subject', 'body']
+
+    # implement style in input form 
+    def __init__(self, *args, **kwargs):
+        super(MessageForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs.update({'class': 'input'})
+        self.fields['email'].widget.attrs.update({'class': 'input'})
+        self.fields['subject'].widget.attrs.update({'class': 'input'})
+        self.fields['body'].widget.attrs.update({'class': 'input'})
