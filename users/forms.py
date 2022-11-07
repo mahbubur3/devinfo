@@ -71,7 +71,5 @@ class MessageForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(MessageForm, self).__init__(*args, **kwargs)
 
-        self.fields['name'].widget.attrs.update({'class': 'input'})
-        self.fields['email'].widget.attrs.update({'class': 'input'})
-        self.fields['subject'].widget.attrs.update({'class': 'input'})
-        self.fields['body'].widget.attrs.update({'class': 'input'})
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'input'})
