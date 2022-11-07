@@ -117,6 +117,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+# EMAIL 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
