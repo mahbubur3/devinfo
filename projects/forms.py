@@ -6,7 +6,7 @@ from .models import Project, Review
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ['title', 'thumbnail', 'description', 'live_site', 'source_code', 'tags']
+        fields = ['title', 'thumbnail', 'description', 'live_site', 'source_code']
         widgets = {
             'tags':forms.CheckboxSelectMultiple(),
         }

@@ -26,7 +26,6 @@ def create_profile(sender, instance, created, **kwargs):
             settings.EMAIL_HOST_USER,
             [profile.email],
             fail_silently=False
-
         )
 
 
@@ -42,9 +41,11 @@ def edit_user(sender, instance, created, **kwargs):
 
 
 def delete_user(sender, instance, **kwargs):
-    user = instance.user
-    user.delete()
-
+    try:
+        user = instance.user
+        user.delete()
+    except:
+        pass
 
 post_save.connect(create_profile, sender=User)
 post_save.connect(edit_user, sender=Profile)
