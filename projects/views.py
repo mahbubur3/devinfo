@@ -57,7 +57,7 @@ def create_project(request):
             return redirect('projects')
         
     context = {'form': form}
-    return render(request, 'projects/create-project.html', context)
+    return render(request, 'projects/project-form.html', context)
 
 
 # edit project
@@ -81,7 +81,7 @@ def edit_project(request, pk):
             return redirect('account')
         
     context = {'form': form, 'project': project}
-    return render(request, 'projects/edit-project.html', context)
+    return render(request, 'projects/project-form.html', context)
 
 
 # delete a project
