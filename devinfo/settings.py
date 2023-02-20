@@ -125,10 +125,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'devinfo.wsgi.application'
 
-# CSRF_TRUSTED_ORIGINS = [
-#     'https://web-production-58b4.up.railway.app'
+CSRF_TRUSTED_ORIGINS = [
+    'https://dev-info.up.railway.app/'
     
-# ]
+]
 
 
 # Database
