@@ -125,6 +125,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'devinfo.wsgi.application'
 
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://web-production-58b4.up.railway.app'
+    
+# ]
 
 
 # Database
@@ -133,8 +137,12 @@ WSGI_APPLICATION = 'devinfo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'UTbbIi5artXC9YffK15M',
+        'HOST': 'containers-us-west-186.railway.app',
+        'PORT': '5855',
     }
 }
 
