@@ -126,7 +126,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'devinfo.wsgi.application'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://dev-info.up.railway.app/'
+    'https://dev-info.up.railway.app'
     
 ]
 
