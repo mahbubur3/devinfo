@@ -25,7 +25,7 @@ def create_profile(sender, instance, created, **kwargs):
             message,
             settings.EMAIL_HOST_USER,
             [profile.email],
-            fail_silently=False
+            fail_silently=False,
         )
 
 

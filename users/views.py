@@ -62,7 +62,7 @@ def signup(request):
             return redirect('account')
         
         else:
-            messages.error(request, 'An error has occurred during signup')
+            messages.success(request, 'An error has occurred during signup')
 
     context = {'page': page, 'form': form}
     return render(request, 'users/signin-signup.html', context)
